@@ -9,14 +9,14 @@ var razorpay = new Razorpay({
 });
 document.getElementById('btn').addEventListener('click', function() {
 Razorpay.isTezAvailable(success, error);
-    
+});    
+
 function success() {
     alert('Tez Success);
-};
+}
 
 function error(e) {
     alert(e.message);
-};
+}
   
-});
 </script>
