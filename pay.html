@@ -8,8 +8,7 @@ var data = {
   contact:'9876543210',
   email:'foo@example.com',
   currency:"INR",
-  method:"netbanking",
-  bank:"HDFC",
+  method:"upi",
   notes: {
     'order_id':'receipt_1234'
   }
@@ -20,12 +19,10 @@ var razorpay = new Razorpay({
 });
 
 document.getElementById('btn').addEventListener('click', function() {
-razorpay.createPayment(data);
+razorpay.createPayment(data, { tez:true });
     
   razorpay.on('payment.success', function(resp) {
     alert(resp.razorpay_payment_id),
-    alert(resp.razorpay_order_id),
-    alert(resp.razorpay_signature)
 }); // will pass payment ID, order ID, and Razorpay signature to success handler.
   
 razorpay.on('payment.error', function(resp){
