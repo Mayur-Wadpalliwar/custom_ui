@@ -1,0 +1,22 @@
+<button id='btn'>Gpay - Click Me</button>
+  
+<script type="text/javascript" src="https://checkout.razorpay.com/v1/razorpay.js"></script>
+
+<script>
+var razorpay = new Razorpay({
+  key: 'rzp_test_ujyrjCmMoiIisD',
+  currency:"INR",
+});
+document.getElementById('btn').addEventListener('click', function() {
+Razorpay.isTezAvailable(success, error);
+    
+function success() {
+    alert('Tez Success);
+};
+
+function error(e) {
+    alert(e.message);
+};
+  
+});
+</script>
