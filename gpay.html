@@ -8,7 +8,7 @@ var razorpay = new Razorpay({
   currency:"INR",
 });
 document.getElementById('btn').addEventListener('click', function() {
-Razorpay.isTezAvailable(success, error);
+razorpay.isTezAvailable(success, error);
    
 function success() {
     alert('Tez Success');
