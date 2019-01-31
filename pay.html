@@ -20,7 +20,7 @@ var razorpay = new Razorpay({
 });
 
 document.getElementById('btn').addEventListener('click', function() {
-razorpay.createPayment(data, { tez:true });
+razorpay.createPayment(data);
     
   razorpay.on('payment.success', function(resp) {
     alert(resp.razorpay_payment_id),
