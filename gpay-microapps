@@ -1,0 +1,47 @@
+<button id='btn'>Click Me</button>
+  
+<script type="text/javascript" src="https://checkout.razorpay.com/v1/razorpay.js"></script>
+
+<script>
+
+function pay()
+var data = {
+  "amount": "100", // in paise, 100 equals ₹1
+  "contact": "9876543210",
+  "email": "foo@example.com",
+  "method": "upi",
+  "notes": {
+    "microapps":"test"
+  }
+};
+var razorpay = new Razorpay({
+  key: 'rzp_live_ePMZk1A48Q5MXF',
+  currency:"INR",
+});
+document.getElementById('btn').addEventListener('click', function() {
+
+razorpay.checkPaymentAdapter('microapps.gpay')
+  .then(() => {
+    // Google Pay Microapps API is available, show the payment option
+    pay();
+  })
+  .catch(() => {
+    // Google Pay Microapps API is unavailable
+    alert('Not available');
+  });
+  
+  razorpay.createPayment(data, {
+        microapps: {
+            gpay: true
+        }
+    });
+    
+  razorpay.on('payment.success', function(resp) {
+    alert(resp.razorpay_payment_id)
+});
+  
+razorpay.on('payment.error', function(resp){
+alert(resp.error.description)
+});
+})
+</script>
