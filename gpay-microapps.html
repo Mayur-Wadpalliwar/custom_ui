@@ -4,7 +4,7 @@
 
 <script>
 
-function pay();
+function pay({
 var data = {
   "amount": "100", // in paise, 100 equals ₹1
   "contact": "9876543210",
@@ -13,7 +13,7 @@ var data = {
   "notes": {
     "microapps":"test"
   }
-};
+});
 var razorpay = new Razorpay({
   key: 'rzp_live_ePMZk1A48Q5MXF',
   currency:"INR",
