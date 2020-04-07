@@ -1,47 +1,33 @@
-<button id='btn'>Click Me</button>
-  
+<button id='btn'>Click Me to check if GPAY is available</button>
+
 <script type="text/javascript" src="https://checkout.razorpay.com/v1/razorpay.js"></script>
-
 <script>
-
-function pay(
-var data = {
-  "amount": "100", // in paise, 100 equals ₹1
-  "contact": "9876543210",
-  "email": "foo@example.com",
-  "method": "upi",
-  "notes": {
-    "microapps":"test"
-  }
-});
-var razorpay = new Razorpay({
-  key: 'rzp_live_ePMZk1A48Q5MXF',
-  currency:"INR",
-});
+var razorpay = new Razorpay({  key: 'rzp_live_ePMZk1A48Q5MXF' });
+  
 document.getElementById('btn').addEventListener('click', function() {
-
-razorpay.checkPaymentAdapter('microapps.gpay')
+  
+razorpay.checkPaymentAdapter('gpay')
   .then(() => {
     // Google Pay Microapps API is available, show the payment option
-    pay();
-  })
+    alert('Google pay available on the device for making the payment');
+  razorpay.createPayment({
+    "amount": "500",
+	  "email": "gaurav.kumar@example.com",
+	  "contact": "9123456780",
+	  "method": "upi"
+},{ gpay: true });
+	
+razorpay.on('payment.success', function(resp) {
+    alert(resp.razorpay_payment_id),
+    alert(resp.razorpay_order_id),
+    alert(resp.razorpay_signature)});  
+
+razorpay.on('payment.error', function(resp){alert(resp.error.description)});
+	
+})
   .catch(() => {
     // Google Pay Microapps API is unavailable
     alert('Not available');
   });
-  
-  razorpay.createPayment(data, {
-        microapps: {
-            gpay: true
-        }
-    });
-    
-  razorpay.on('payment.success', function(resp) {
-    alert(resp.razorpay_payment_id)
-});
-  
-razorpay.on('payment.error', function(resp){
-alert(resp.error.description)
-});
 })
 </script>
