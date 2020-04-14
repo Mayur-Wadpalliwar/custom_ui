@@ -1,0 +1,34 @@
+<button id='btn'>Click Me</button>
+  
+<script type="text/javascript" src="https://checkout.razorpay.com/v1/razorpay.js"></script>
+
+<script>
+var data = {
+  "amount": "100", // in paise, 100 equals ₹1
+  "contact": "9876543210",
+  "email": "foo@example.com",
+  "currency": "INR",
+  "method": "wallet",
+  "wallet": "phonepeswitch",
+  "phonepe_switch": {
+    "transactionContext":"{\"orderContext\":{\"trackingInfo\":{\"type\":\"HTTPS\",\"url\":\"https:\/\/www.test.com\/orders\/history\"}},\"fareDetails\":{\"totalAmount\":730,\"payableAmount\":730},\"cartDetails\":{\"cartItems\":[{\"category\":\"SHOPPING\",\"itemId\":370662,\"price\":365,\"itemName\":\"5 Piece Couverture Chocolate Box\",\"quantity\":2,\"address\":{\"addressString\":\"Sabha pearl, 2nd floor80 feet road, Indiranagar\",\"city\":\"Bengaluru\",\"pincode\":\"560038\",\"country\":\"India\",\"latitude\":12.9663,\"longitude\":77.6039},\"shippingInfo\":{\"deliveryType\":\"STANDARD\",\"time\":{\"timestamp\":1573467980,\"zoneOffSet\":\"+05:30\"}}}]}}"
+  }
+};
+var razorpay = new Razorpay({
+  key: 'rzp_live_ePMZk1A48Q5MXF',
+  currency:"INR",
+});
+
+document.getElementById('btn').addEventListener('click', function() {
+razorpay.createPayment(data);
+    
+  razorpay.on('payment.success', function(resp) {
+    alert(resp.razorpay_payment_id)
+});
+  
+razorpay.on('payment.error', function(resp){
+alert(resp.error.description)
+});
+
+})
+</script>
