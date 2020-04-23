@@ -1,6 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Razorpay Custom Checkout</title>
+    <script>
+        Razorpay = {
+            config: {
+                api: "http://zeta5-api.stage.razorpay.in/"
+            }
+        };
+    </script>
+    <script
+        type="text/javascript"
+        src="https://checkout.razorpay.com/v1/razorpay.js"
+    ></script>
+</head>
+<body>
 <button id='btn'>Click Me</button>
-  
-<script type="text/javascript" src="https://checkout.razorpay.com/v1/razorpay.js"></script>
 
 <script>
 var data = {
@@ -32,3 +50,5 @@ alert(resp.error.description)
 
 })
 </script>
+</body>
+</html>
