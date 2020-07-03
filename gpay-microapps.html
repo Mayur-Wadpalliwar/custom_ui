@@ -6,16 +6,18 @@ var razorpay = new Razorpay({  key: 'rzp_live_ePMZk1A48Q5MXF' });
   
 document.getElementById('btn').addEventListener('click', function() {
   
-razorpay.checkPaymentAdapter('gpay')
+razorpay.checkPaymentAdapter('microapps.gpay')
   .then(() => {
     // Google Pay Microapps API is available, show the payment option
     alert('Google pay available on the device for making the payment');
   razorpay.createPayment({
     "amount": "500",
 	  "email": "gaurav.kumar@example.com",
-	  "contact": "9123456780",
+	  "contact": "+919999999999",
 	  "method": "upi"
-},{ gpay: true });
+},microapps: {
+            gpay: true
+        };
 	
 razorpay.on('payment.success', function(resp) {
     alert(resp.razorpay_payment_id),
